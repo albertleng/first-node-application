@@ -2,10 +2,18 @@
 
 ## Description
 
-TODO: Add description
+This is my first node application. It is a simple application that demonstrates basic commands of Node and NPM.
 
 ## Installation
 
+First initialize npm in your project. This will create a `package.json` file for
+managing dependencies.
+
+```bash
+npm init
+```
+
+Then, install the project dependencies:
 ```bash
 npm install
 ```
