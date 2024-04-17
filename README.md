@@ -2,7 +2,8 @@
 
 ## Description
 
-This is my first node application. It is a simple application that demonstrates basic commands of Node and NPM.
+This is my first node application. It is a simple application that demonstrates
+basic commands of Node and NPM.
 
 ## Installation
 
@@ -14,43 +15,48 @@ npm init
 ```
 
 Then, install the project dependencies:
+
 ```bash
 npm install
 ```
 
-## Usage
+## Steps to create a Docker image and deploy to AWS ECR
+
+1. **Build the Docker image**
 
 ```bash
-npm start
+docker build -t node-docker-albert-20240417 .
 ```
 
-## Features
-
-TODO: Add features
-
-## API Reference
-
-TODO: Update API Reference
-
-#### GET all Items
-
-```http
-  GET /api/items
-```
-
-#### GET Item
-
-```http
-  GET /api/items/:id
-```
-
-## Tests
-
-To run tests, run the following command:
+2. **Create a repository in AWS ECR**
 
 ```bash
-npm test
+aws ecr create-repository --repository-name node-docker-albert-20240417
 ```
+
+3. **Authenticate Docker to your ECR repository**
+
+```bash
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 255945442255.dkr.ecr.us-east-1.amazonaws.com
+```
+
+4. **Tag the Docker image**
+
+```bash
+docker tag node-docker-albert-20240417:latest 255945442255.dkr.ecr.us-east-1.amazonaws.com/node-docker-albert-20240417:latest
+```
+
+5. **Push the Docker image to AWS ECR repo**
+
+```bash
+docker push 255945442255.dkr.ecr.us-east-1.amazonaws.com/node-docker-albert-20240417:latest
+```
+
+## Screenshots
+
+![](./ECR01.png)  
+![](./ECR02.png)  
+![](./ECR03.png)
 
 ## Contributing
 
